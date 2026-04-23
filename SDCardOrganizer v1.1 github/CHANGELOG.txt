@@ -1,0 +1,61 @@
+CHANGELOG - SD Card Organizer
+Version 1.1 - 2026-04-22
+
+NEW FEATURES
+
+EXIF Capture Date Folder Naming
+- New option to use photo capture date for folder names
+- Three modes: Earliest date on card, Latest date on card, Date range
+- Date range creates folders like "2024-03-15_to_2024-03-17"
+- Fallback to today's date when no EXIF data found
+
+File Type Priority
+- Choose which file type to read EXIF from first
+- Options: JPG first (fastest), RAW first, Either
+- Default is JPG first for performance
+
+Volume Blacklist
+- New "Ignored Volumes" section in Settings
+- Add volume names (one per line) to skip auto-detection
+- Case-insensitive matching
+
+Duplicate File Detection
+- New option: "Skip duplicate files (don't overwrite)"
+- Enabled by default
+- Logs skipped files to console
+
+CHANGES
+
+Improved SD Card Detection
+- Removed old macOS version name list
+- Now filters by hardware (isRemovable || isEjectable) AND !isInternal
+- Named "Unnamed Card" displays for volumes without names
+
+Folder Name Fallback
+- When volume has no meaningful name, uses "Card" as fallback for {drive} token
+
+UI Improvements
+- Updated Settings window with new EXIF options
+- Added section labels for better organization
+
+FIXES
+- Safe fallback for defaultDestination (Desktop -> home directory)
+- Nested Keys enum in SettingsController for cleaner code
+- OrganizationResult.notificationBody computed property
+- StatusMenuController.updateStatus(idle:) cleaner API
+- Static DateFormatters in EXIFReader for performance
+- DiskMonitorController receives SettingsController at init
+
+---
+
+Version 1.0 - 2026-04-17
+
+Initial release featuring:
+- Auto-detection of SD cards using FSEvents
+- File organization into JPG, TIFF, RAW, VIDEO folders
+- Menu bar interface (no dock icon)
+- Custom folder naming patterns with tokens
+- Settings persistence in UserDefaults
+- Notification when organization complete
+- Move vs Copy option
+- Eject prompt after transfer
